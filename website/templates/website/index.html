@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h1>Taller de reconocimiento de imagenes con OpenAI, Python y
+                Django</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6">
+
+            <form action="" method="post" enctype="multipart/form-data"
+                  id="imageForm" class="form-row">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">
+                        Selecciona una imagen
+                    </label>
+                    {{ form.image }}
+                </div>
+
+                <input type="submit" value="Enviar"
+                       class="btn btn-outline-primary">
+            </form>
+
+            <div class="spinner-border mt-5 "
+                 style="width: 3rem; height: 3rem; display: none !important;"
+                 role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <img id="preview" src="#" alt="Previsualización de la imagen"
+                 style="display:none; max-width: 100%; height: auto;"
+                 class="img-thumbnail"/>
+            <p id="result" style="display:none;" class="fs-4"></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/website.js' %}"></script>
+{% endblock %}
+
